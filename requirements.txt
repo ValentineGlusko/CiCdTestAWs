@@ -1,2 +1,6 @@
 fastapi
+fastapi[standard]
 boto3
+botocore[crt]
+pytest
+httpx
