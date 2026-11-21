@@ -1,0 +1,23 @@
+name: DeployToEc2
+on: 
+ workflow_dispatch:
+   inputs:
+     IS_LOCAL:
+       default: true
+       required: true
+       type: boolean
+     PROFILE_NAME: 
+       default: valentine
+       required: false
+       type: string
+jobs:
+  first_job:
+   runs-on: self-hosted
+   steps:
+    - uses: actions/checkout@v4
+      with:
+        sparse-checkout: .
+        
+        
+      
+    
