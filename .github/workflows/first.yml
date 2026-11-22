@@ -24,17 +24,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify files on EC2
+      - name: stop systemctl
         run: |
-          pwd
-          ls -la
-          git status
+          sudo systemctl stop fastserver
+          echo "STATUS:"
+          sudo systemctl status fastserver
       - name: Install pip
         run: sudo apt update && sudo apt install -y python3-pip python3-venv
       - name: Move to userfolder
         run: | 
+          rm -r ~/CiCdTestAWs
           cp -r ~/actions-runner/_work/CiCdTestAWs ~/ --force
-          
+          sudo chmod 777 ~/CiCdTestAWs/CiCdTestAWs/start.sh
           python3 -m venv ~/CiCdTestAWs/CiCdTestAWs/venv
-          ~/CiCdTestAWs/CiCdTestAWs/venv/bin/python -m pip install -r requirements.txt
-        
+          ~/CiCdTestAWs/CiCdTestAWs/venv/bin/python -m pip install -r requirements.txt    
+      - name: run service
+        run: sudo systemctl start fastserver
