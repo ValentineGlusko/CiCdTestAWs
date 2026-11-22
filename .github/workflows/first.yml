@@ -34,7 +34,7 @@ jobs:
       - name: Move to userfolder
         run: | 
           cp -r ~/actions-runner/_work/CiCdTestAWs ~/ --force
-          sudo rm -r ~/actions-runner/_work/CiCdTestAWs
+          
           python3 -m venv ~/CiCdTestAWs/CiCdTestAWs/venv
           ~/CiCdTestAWs/CiCdTestAWs/venv/bin/python -m pip install -r requirements.txt
         
