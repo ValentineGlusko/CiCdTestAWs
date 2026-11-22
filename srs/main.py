@@ -9,6 +9,11 @@ from fastapi.responses import JSONResponse
 app = FastAPI()
 
 
+@app.post("/check/")
+def check_api():
+    return JSONResponse(status_code=200, content="Api is working")
+
+
 @app.post("/sns/")
 def post_sns_order(topic: str, order_set: dict):
     result = publish_order(topic_arn=topic, order=order_set)

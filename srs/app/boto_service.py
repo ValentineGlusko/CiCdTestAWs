@@ -1,7 +1,3 @@
-from ast import Dict
-import profile
-import queue
-from tkinter import W
 from xml.dom.minidom import Identified
 from boto3 import Session
 import json
