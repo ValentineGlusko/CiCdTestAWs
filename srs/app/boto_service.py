@@ -4,10 +4,10 @@ import json
 import boto3
 import os
 
-IS_LOCAL = os.getenv('ISLOCAL')
-PROFILE_NAME = os.getenv("PROFILENAME")
-# IS_LOCAL = True
-# PROFILE_NAME = "valentine"
+# IS_LOCAL = os.getenv('ISLOCAL')
+# PROFILE_NAME = os.getenv("PROFILENAME")
+IS_LOCAL = True
+PROFILE_NAME = "valentine"
 
 
 def session_inicializer(isLocal: bool, profile_name: str = None) -> Session:

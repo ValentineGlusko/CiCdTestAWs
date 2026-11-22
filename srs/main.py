@@ -1,5 +1,5 @@
 import re
-from srs.app.boto_service import send_message_to_queue, receive_messages, publish_order
+from srs.app.boto_service import send_message_to_queue, receive_messages, publish_order , whoami
 import os
 import json
 from fastapi import FastAPI, status
@@ -11,7 +11,9 @@ app = FastAPI()
 
 @app.post("/check/")
 def check_api():
-    return JSONResponse(status_code=200, content="Api is working")
+    who = whoami()
+    #stre = json.dump(who)
+    return JSONResponse(status_code=200, content=who)
 
 
 @app.post("/sns/")
