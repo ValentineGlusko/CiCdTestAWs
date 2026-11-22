@@ -1,5 +1,5 @@
 import re
-from app.boto_service import send_message_to_queue, receive_messages, publish_order
+from srs.app.boto_service import send_message_to_queue, receive_messages, publish_order
 import os
 import json
 from fastapi import FastAPI, status
