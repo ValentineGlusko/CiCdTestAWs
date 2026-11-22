@@ -1,0 +1,40 @@
+
+name: DeployToEc2
+
+on:
+  workflow_dispatch:
+    inputs:
+      IS_LOCAL:
+        default: true
+        required: true
+        type: boolean
+      PROFILE_NAME:
+        default: valentine
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  first_job:
+    runs-on: [self-hosted, Linux]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify files on EC2
+        run: |
+          pwd
+          ls -la
+          git status
+      - name: Install pip
+        run: sudo apt update && sudo apt install -y python3-pip python3-venv
+      - name: Move to userfolder
+        run: | 
+          cp -r ~/actions-runner/_work/CiCdTestAWs ~/ --force
+          
+          python3 -m venv ~/CiCdTestAWs/CiCdTestAWs/venv
+          ~/CiCdTestAWs/CiCdTestAWs/venv/bin/python -m pip install -r requirements.txt
+        
