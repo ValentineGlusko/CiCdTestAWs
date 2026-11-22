@@ -28,7 +28,7 @@ jobs:
         run: |
           sudo systemctl stop fastserver
           echo "STATUS:"
-          sudo systemctl status fastserver
+          sudo systemctl status fastserver || true
       - name: Install pip
         run: sudo apt update && sudo apt install -y python3-pip python3-venv
       - name: Move to userfolder
