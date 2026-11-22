@@ -1,23 +1,31 @@
+
 name: DeployToEc2
-on: 
- workflow_dispatch:
-   inputs:
-     IS_LOCAL:
-       default: true
-       required: true
-       type: boolean
-     PROFILE_NAME: 
-       default: valentine
-       required: false
-       type: string
+
+on:
+  workflow_dispatch:
+    inputs:
+      IS_LOCAL:
+        default: true
+        required: true
+        type: boolean
+      PROFILE_NAME:
+        default: valentine
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
 jobs:
   first_job:
-   runs-on: self-hosted
-   steps:
-    - uses: actions/checkout@v4
-      with:
-        sparse-checkout: .
-        
-        
-      
-    
+    runs-on: [self-hosted, Linux]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify files on EC2
+        run: |
+          pwd
+          ls -la
+          git status
